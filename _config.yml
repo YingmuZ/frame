@@ -23,15 +23,15 @@ scripts:
 - /js/menu.js
 
 # favicon
-favicon: /favicon.png
+favicon: /2-profile_cover.png
 
 date_format: MMM D, YYYY
 
 # profile
 profile:
   title: 大脑复健档案.
-  body: 身心健康、创伤疗愈、复原旅程
-  image: /profile_cover.png
+  body: 儿童性侵害等复杂创伤  身心健康、创伤疗愈、复原旅程
+  image: /straw.png
 
   links:
     Home: /
