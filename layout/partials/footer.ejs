@@ -8,8 +8,73 @@
       theme.footer.copyright_info.author %> | <% }%> <% if
       (theme.footer.powered_by.enable) {%> Powered by
       <a href="https://hexo.io/">Hexo</a> &
-      <a href="https://github.com/zoeingwingkei/frame/">Frame</a> 
+      <a href="https://github.com/zoeingwingkei/frame/">Frame</a>
       <% }%>
     </div>
   </div>
 </div>
+
+<!-- <div class="footer">
+  <div class="flex-container">
+    <div class="footer-text">
+      <% if (theme.footer.other_info.enable) {%>
+        <%= theme.footer.other_info.content %>
+        <br />
+      <% } %>
+      <% if (theme.footer.copyright_info.enable) {%>
+        <%= theme.footer.copyright_info.author %> |
+      <% } %>
+      <% if (theme.footer.powered_by.enable) {%>
+        Powered by
+        <a href="https://hexo.io/">Hexo</a> &
+        <a href="https://github.com/zoeingwingkei/frame/">Frame</a>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+
+<div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 280px; background: #f0f0f0; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2); padding: 12px; font-family: Arial, sans-serif; z-index: 1000;">
+  <div id="chatbot-messages" style="height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 8px; background: white; margin-bottom: 8px;"></div>
+  <input id="chatbot-input" type="text" placeholder="请输入你的问题..." style="width: calc(100% - 52px); padding: 6px;" />
+  <button id="chatbot-send" style="width: 40px;">发送</button>
+</div>
+
+<script>
+  const qaMap = {
+    "你好": "你好！欢迎访问本站，有什么我可以帮你介绍的吗？",
+    "这个网站有什么": "本站是我的个人博客，包含技术文章、项目展示和生活分享。",
+    "网站内容": "本站内容包括：1. 技术博客 2. 项目案例 3. 生活随笔 4. 联系方式",
+    "怎么联系你": "你可以通过页面底部的联系方式找到我，或者发送邮件到 example@example.com。",
+    "帮助": "你可以问我关于本站内容的问题，比如“这个网站有什么”或者“怎么联系你”。"
+  };
+
+  const messagesDiv = document.getElementById("chatbot-messages");
+  const input = document.getElementById("chatbot-input");
+  const sendBtn = document.getElementById("chatbot-send");
+
+  function addMessage(text, isUser) {
+    const msg = document.createElement("div");
+    msg.style.padding = "6px";
+    msg.style.marginBottom = "6px";
+    msg.style.borderRadius = "4px";
+    msg.style.background = isUser ? "#d1e7dd" : "#f8d7da";
+    msg.style.textAlign = isUser ? "right" : "left";
+    msg.textContent = text;
+    messagesDiv.appendChild(msg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  function handleSend() {
+    const question = input.value.trim().toLowerCase();
+    if (!question) return;
+    addMessage(question, true);
+
+    const answer = qaMap[question] || "抱歉，我暂时还不懂这个问题。你可以试试问“帮助”。";
+    setTimeout(() => addMessage(answer, false), 500);
+    input.value = "";
+  }
+
+  sendBtn.onclick = handleSend;
+  input.addEventListener("keydown", e => { if (e.key === "Enter") handleSend(); });
+</script> -->

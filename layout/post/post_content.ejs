@@ -1,7 +1,10 @@
-<div class="post-content">
-    <%-page.content%>
-</div> 
+<div class="post-content"><%-page.content%></div>
 
 <script>
-    window.onload = detectors();
+  // window.onload = detectors();
+  window.onload = function () {
+    if (typeof detectors === "function") {
+      detectors();
+    }
+  };
 </script>

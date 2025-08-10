@@ -1,21 +1,36 @@
 <div class="profile">
-    <div class="profile-image">
-        <% if (theme.profile.image) {%>
-            <img src="<%= url_for(theme.profile.image)%>" alt="featured_image">
-        <% } %>  
+  <div class="profile-image">
+    <% if (theme.profile.image) { %>
+    <img
+      src="<%= url_for(theme.profile.image) %>"
+      data-hover="<%= theme.profile.hover_image ? url_for(theme.profile.hover_image) : '' %>"
+      alt="featured_image"
+    />
+    <% } %>
+  </div>
+  <div class="post-content profile-content">
+    <div class="profile-title"><%= theme.profile.title %></div>
+    <div class="profile-body"><%= theme.profile.body %></div>
+    <% Object.keys(theme.profile.links).forEach(key => { %>
+    <div class="profile-link">
+      <a href="<%= url_for(theme.profile.links[key]) %>"><%= key %></a>
     </div>
-    <div class="post-content profile-content">
-        <div class="profile-title">
-            <%=theme.profile.title%>
-        </div>
-        <div class="profile-body">
-            <%=theme.profile.body%>
-        </div>
-        <% Object.keys(theme.profile.links).forEach(key => { %>
-            <div class="profile-link">
-                <a href="<%= url_for(theme.profile.links[key])%>"><%=key%></a> 
-            </div>           
-        <% }); %>
-    </div>
-    
+    <% }); %>
+  </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var img = document.querySelector(".profile-image img");
+    if (img && img.dataset.hover) {
+      var original = img.src;
+      var hover = img.dataset.hover;
+      img.addEventListener("mouseenter", function () {
+        img.src = hover;
+      });
+      img.addEventListener("mouseleave", function () {
+        img.src = original;
+      });
+    }
+  });
+</script>
